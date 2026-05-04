@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Acceso a ficha</title>
+</head>
+
+<body style="font-family: Arial; text-align: center; margin-top: 50px;">
+
+<h2>Acceso a ficha</h2>
+
+<p>Hacé clic en el siguiente enlace:</p>
+
+<a id="link" href="" style="font-size: 18px;"></a>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const linkFinal = `index.html?id=${id}`;
+
+document.getElementById("link").href = linkFinal;
+document.getElementById("link").textContent = linkFinal;
+</script>
+
+</body>
+</html>
