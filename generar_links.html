@@ -21,10 +21,7 @@ fetch("./datos.json")
 
       const link = `https://isabellaand.github.io/fichas-qr-2/index.html?id=${persona.id}`;
 
-      const textoQR = `Ficha personal:
-${persona.nombre}
-Abrir en navegador:
-${link}`;
+      const textoQR = link;
 
       const qr = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(textoQR)}`;
 
