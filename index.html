@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ficha</title>
+</head>
+
+<body>
+
+<h2 id="nombre"></h2>
+
+<p><b>DNI:</b> <span id="dni"></span></p>
+<p><b>CUIL:</b> <span id="cuil"></span></p>
+<p><b>Teléfono:</b> <span id="telefono"></span></p>
+<p><b>Sector:</b> <span id="sector"></span></p>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+fetch("./datos.json")
+  .then(res => res.json())
+  .then(data => {
+    const persona = data.find(p => p.id === id);
+
+    if (persona) {
+      document.getElementById("nombre").textContent = persona.nombre;
+      document.getElementById("dni").textContent = persona.dni;
+      document.getElementById("cuil").textContent = persona.cuil || "-";
+      document.getElementById("telefono").textContent = persona.telefono || "-";
+      document.getElementById("sector").textContent = persona.sector || "-";
+    } else {
+      document.body.innerHTML = "<h2>No encontrado</h2>";
+    }
+  });
+</script>
+
+</body>
+</html>
