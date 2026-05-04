@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Generar Links y QR</title>
+</head>
+
+<body>
+
+<h2>Generador de Links y QR</h2>
+<div id="contenedor">Cargando...</div>
+
+<script>
+fetch("./datos.json")
+  .then(res => res.json())
+  .then(data => {
+    const contenedor = document.getElementById("contenedor");
+    contenedor.innerHTML = "";
+
+    data.forEach(persona => {
+
+      const link = `https://TUUSUARIO.github.io/TUREPO/index.html?id=${persona.id}`;
+
+      const textoQR = `Ficha personal:
+${persona.nombre}
+Abrir en navegador:
+${link}`;
+
+      const qr = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(textoQR)}`;
+
+      contenedor.innerHTML += `
+        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+          <h3>${persona.nombre}</h3>
+          <p>DNI: ${persona.dni}</p>
+          <p>CUIL: ${persona.cuil || "-"}</p>
+          <p>Sector: ${persona.sector || "-"}</p>
+
+          <input value="${link}" style="width:100%" readonly>
+          <br><br>
+
+          <img src="${qr}">
+        </div>
+      `;
+    });
+  });
+</script>
+
+</body>
+</html>
