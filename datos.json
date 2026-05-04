@@ -1,0 +1,18 @@
+[
+  {
+    "id": "12345678",
+    "nombre": "Hector Enrique",
+    "dni": "12345678",
+    "cuil": "20-12345678-3",
+    "telefono": "3411234567",
+    "sector": "Administración"
+  },
+  {
+    "id": "87654321",
+    "nombre": "Maria Lopez",
+    "dni": "87654321",
+    "cuil": "27-87654321-4",
+    "telefono": "3419999999",
+    "sector": "Salud"
+  }
+]
