@@ -2,43 +2,35 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Generar Links y QR</title>
+  <title>QRs</title>
 </head>
 
-<body>
+<body style="text-align:center; font-family: Arial;">
 
-<h2>Generador de Links y QR</h2>
-<div id="contenedor">Cargando...</div>
+<h2>QRs</h2>
+
+<div id="contenedor"></div>
 
 <script>
 fetch("./datos.json")
   .then(res => res.json())
   .then(data => {
+
     const contenedor = document.getElementById("contenedor");
-    contenedor.innerHTML = "";
 
     data.forEach(persona => {
 
       const link = `https://isabellaand.github.io/fichas-qr-2/intermedio.html?id=${persona.id}`;
 
-      const textoQR = link;
-
-      const qr = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(textoQR)}`;
+      const qr = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
 
       contenedor.innerHTML += `
-        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-          <h3>${persona.nombre}</h3>
-          <p>DNI: ${persona.dni}</p>
-          <p>CUIL: ${persona.cuil || "-"}</p>
-          <p>Sector: ${persona.sector || "-"}</p>
-
-          <input value="${link}" style="width:100%" readonly>
-          <br><br>
-
+        <div style="margin:20px;">
           <img src="${qr}">
         </div>
       `;
     });
+
   });
 </script>
 
